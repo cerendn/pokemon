@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import Header from "./header";
-import Main from "./main";
+import Header from "./Header";
+import Main from "./Main";
 
 function PokemonApp() {
   //pokemonList state
