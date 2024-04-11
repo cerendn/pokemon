@@ -13,6 +13,7 @@ function PokemonApp() {
   return (
     <div className="container">
       <Header />
+      {/* search buton */}
       <div className="buton">
         <input type="text" placeholder="Find Pokémon..." />
         <input type="text" placeholder="Find Type..." />
