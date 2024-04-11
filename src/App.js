@@ -60,6 +60,7 @@ function PokemonApp() {
           <PokemonCard key={index} pokemonName={pokemon.name} />
         ))}
       </div>
+      <footer></footer>
     </div>
   );
 }
