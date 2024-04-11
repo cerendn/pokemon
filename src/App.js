@@ -26,14 +26,6 @@ function PokemonApp() {
     };
     fetchData();
   }, []);
-  // Pokemon isimleri için filtreleme function
-  const filterPokemonByName = (name) => {
-    setSearchPokemon(name.toLowerCase());
-  };
-  // Types filtreleme function
-  const filterPokemonByType = (type) => {
-    setSearchType(type.toLowerCase());
-  };
 
   return (
     <div className="container">
@@ -44,16 +36,8 @@ function PokemonApp() {
           type="text"
           placeholder="Find Pokémon..."
           value={searchPokemon}
-          //isim için filter func çağır
-          onChange={(e) => filterPokemonByName(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Find Type..."
-          value={searchType}
-          //types filter function çağır
-          onChange={(e) => filterPokemonByType(e.target.value)}
-        />
+        <input type="text" placeholder="Find Type..." value={searchType} />
       </div>
       <div className="pokemon">
         <div className="pokemon-container">

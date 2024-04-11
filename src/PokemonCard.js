@@ -15,6 +15,7 @@ const PokemonCard = ({ pokemonName }) => {
           );
           const data = await response.json();
           setPokemonData(data);
+          console.log(pokemonData.sprites);
         } catch (error) {
           console.error("Pokemon verisi alınırken hata oluştu:");
         }
