@@ -65,3 +65,11 @@ input::placeholder {
   width: 230px;
   height: 250px;
 }
+footer {
+  display: flex;
+  justify-content: center;
+  color: #ff1f1f;
+}
+.text {
+  text-shadow: 0.5px 0 rgb(59, 27, 93);
+}
