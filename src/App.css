@@ -40,12 +40,18 @@ input::placeholder {
   color: #ff1f1f;
   letter-spacing: 5px;
 }
-.pokemon-container {
+.pokemon {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+}
+.pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  justify-items: center;
+  padding: 20px;
+  max-width: 900px;
   text-align: center;
-  gap: 10px;
 }
 
 .pokemon-card {
@@ -54,7 +60,7 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); /* Kartın gölgesini ayarla */
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   width: 230px;
   height: 250px;
 }
