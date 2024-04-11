@@ -35,10 +35,11 @@ input {
 }
 
 input::placeholder {
-  font-size: small;
+  font-size: medium;
   text-shadow: 1px 0 rgb(59, 27, 93);
   color: #ff1f1f;
-  letter-spacing: 5px;
+  letter-spacing: 7px;
+  text-align: center;
 }
 .pokemon {
   display: flex;
