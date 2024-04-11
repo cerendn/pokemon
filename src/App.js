@@ -43,6 +43,7 @@ function PokemonApp() {
       </div>
       <div className="pokemon">
         <div className="pokemon-container">
+          {/* map ile döngüye alıp Pokemoncard oluşturma */}
           {pokemonList.map((pokemon, index) => (
             <PokemonCard key={index} pokemonName={pokemon.name} />
           ))}

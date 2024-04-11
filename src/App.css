@@ -14,6 +14,14 @@ header {
   display: flex;
   justify-content: space-between;
 }
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  text-shadow: 1.5px 0 rgb(33, 17, 51);
+  letter-spacing: 2px;
+}
 header a {
   color: #fbd743;
   margin: 0 20px;
@@ -72,4 +80,11 @@ footer {
 }
 .text {
   text-shadow: 0.5px 0 rgb(59, 27, 93);
+}
+.social a {
+  color: #f6de7c;
+  border: #d0ccc1;
+  font-size: 15px;
+  margin: 0 10px;
+  text-shadow: 1px 0 rgb(255, 72, 44);
 }
