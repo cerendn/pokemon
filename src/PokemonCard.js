@@ -32,7 +32,10 @@ const PokemonCard = ({ pokemonName }) => {
   return (
     //PokemonCardı gösterme
     <div className="pokemon-card">
-      <img src={pokemonData.sprites.front_default} alt={pokemonData.name} />
+      <img
+        src={pokemonData.sprites.other.showdown.front_default}
+        alt={pokemonData.name}
+      />
       <h3>{`${pokemonData.id} - ${pokemonData.name}`}</h3>
       <div className="pokemon-types">
         <h4>Types:</h4>
