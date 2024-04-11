@@ -2,10 +2,12 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import PokemonCard from "./PokemonCard"; // PokemonCard bileşenini import et
+import Footer from "./footer";
 
 function PokemonApp() {
   //pokemonList state
   const [pokemonList, setPokemonList] = useState([]);
+
   //searchPokemon state
   const [searchPokemon, setSearchPokemon] = useState("");
   //searchType state
@@ -46,12 +48,7 @@ function PokemonApp() {
           ))}
         </div>
       </div>
-      <footer>
-        <div className="social"></div>
-        <div class="text">
-          <p>Copyright 2022 By Pikachu</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
