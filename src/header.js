@@ -3,7 +3,7 @@ function Header() {
     <header>
       <div className="logo">
         <img src="/pokemon-logo.svg" alt="" style={{ width: "40px" }} />
-        <h2>Pokémon App</h2>
+        <h2>Pokémon</h2>
       </div>
 
       <div className="option">
