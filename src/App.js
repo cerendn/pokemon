@@ -9,6 +9,10 @@ function PokemonApp() {
   //pokemonList state
   const [pokemonList, setPokemonList] = useState([]);
 
+  //search state
+  const [searchPokemon, setSearchPokemon] = useState("");
+  const [searchType, setSearchType] = useState("");
+
   //useEffect kullanarak API'den fetch ile veri çekme
   useEffect(() => {
     const fetchData = async () => {
@@ -33,12 +37,12 @@ function PokemonApp() {
         <input
           type="text"
           placeholder="Find Pokémon..."
-          // value={searchPokemon}
+          onChange={(e) => setSearchPokemon(e.target.value)}
         />
         <input
           type="text"
           placeholder="Find Type..."
-          //  value={searchType}
+          onChange={(e) => setSearchType(e.target.value)}
         />
       </div>
       <div className="pokemon">
