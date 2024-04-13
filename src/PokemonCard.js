@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //pokeomon adına göre API'den verileri alıp gösterme
-const PokemonCard = ({ pokemonName }) => {
+function PokemonCard({ pokemonName }) {
   //verileri tutmak için state oluşturma
   const [pokemonData, setPokemonData] = useState(null);
 
@@ -46,6 +46,5 @@ const PokemonCard = ({ pokemonName }) => {
       </div>
     </div>
   );
-};
-
+}
 export default PokemonCard;

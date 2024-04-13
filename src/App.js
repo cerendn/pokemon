@@ -38,7 +38,7 @@ function PokemonApp() {
     // Pokemon tipi araması
     const typeMatch =
       !searchType || // Eğer tip arama terimi yoksa veya boşsa, herhangi bir filtreleme yapma
-      (pokemon.types && // Pokemon'un types özelliği tanımlı ise ve null ya da undefined değilse devam et
+      (pokemon.Types && // Pokemon'un types özelliği tanımlı ise ve null ya da undefined değilse devam et
         Array.isArray(pokemon.types) && // Pokemon'un types özelliği bir diziyse devam et
         pokemon.types.some(
           (type) => type.type.name.toLowerCase() === searchType.toLowerCase()
