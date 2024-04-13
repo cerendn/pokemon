@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import PokemonCard from "./PokemonCard"; // PokemonCard bileşenini import et
 import Footer from "./footer";
-import filter from "./filter";
 
 function PokemonApp() {
   //pokemonList state
