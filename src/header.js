@@ -7,7 +7,7 @@ function Header() {
       </div>
 
       <div className="option">
-        <a href="#">Pokémon Api</a>
+        <a href="https://pokeapi.co/">Pokémon Api</a>
         <a href="#">Pokémon Oficial</a>
         <a href="#">About Author</a>
       </div>
