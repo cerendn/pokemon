@@ -12,7 +12,7 @@ function PokemonApp() {
   const [searchPokemon, setSearchPokemon] = useState("");
   const [searchType, setSearchType] = useState("");
 
-  //useEffect kullanarak API'den fetch ile veri çekme
+  //useEffect hook kullanarak API'den fetch ile veri çekme
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,6 +27,26 @@ function PokemonApp() {
     };
     fetchData();
   }, []);
+
+  // Input değişikliklerine göre filtreleme işlemini gerçekleştiren fonksiyon
+  const filteredPokemonList = pokemonList.filter((pokemon) => {
+    // Pokemon adı araması
+    const nameMatch = pokemon.name
+      .toLowerCase()
+      .includes(searchPokemon.toLowerCase());
+
+    // Pokemon tipi araması
+    const typeMatch =
+      !searchType || // Eğer tip arama terimi yoksa veya boşsa, herhangi bir filtreleme yapma
+      (pokemon.types && // Pokemon'un types özelliği tanımlı ise ve null ya da undefined değilse devam et
+        Array.isArray(pokemon.types) && // Pokemon'un types özelliği bir diziyse devam et
+        pokemon.types.some(
+          (type) => type.type.name.toLowerCase() === searchType.toLowerCase()
+        ));
+
+    // Hem adı hem de tipi arama sonucuna göre filtreleme
+    return nameMatch && typeMatch;
+  });
 
   return (
     <div className="container">
@@ -46,13 +66,15 @@ function PokemonApp() {
       </div>
       <div className="pokemon">
         <div className="pokemon-container">
-          {/* map ile döngüye alıp Pokemoncard oluşturma */}
-          {pokemonList.map((pokemon, index) => (
+          {/* filtrelenmiş pokemonCardları gösterme */}
+          {filteredPokemonList.map((pokemon, index) => (
             <PokemonCard key={index} pokemonName={pokemon.name} />
           ))}
         </div>
       </div>
-      <Footer />
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }
