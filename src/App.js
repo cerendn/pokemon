@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import PokemonCard from "./PokemonCard"; // PokemonCard bileşenini import et
+import PokemonCard from "./PokemonCard";
 import Footer from "./footer";
 
 function PokemonApp() {
@@ -27,25 +27,13 @@ function PokemonApp() {
     };
     fetchData();
   }, []);
-
   // Input değişikliklerine göre filtreleme işlemini gerçekleştiren fonksiyon
   const filteredPokemonList = pokemonList.filter((pokemon) => {
     // Pokemon adı araması
     const nameMatch = pokemon.name
       .toLowerCase()
       .includes(searchPokemon.toLowerCase());
-
-    // Pokemon tipi araması
-    const typeMatch =
-      !searchType || // Eğer tip arama terimi yoksa veya boşsa, herhangi bir filtreleme yapma
-      (pokemon.Types && // Pokemon'un types özelliği tanımlı ise ve null ya da undefined değilse devam et
-        Array.isArray(pokemon.types) && // Pokemon'un types özelliği bir diziyse devam et
-        pokemon.types.some(
-          (type) => type.type.name.toLowerCase() === searchType.toLowerCase()
-        ));
-
-    // Hem adı hem de tipi arama sonucuna göre filtreleme
-    return nameMatch && typeMatch;
+    return nameMatch;
   });
 
   return (
@@ -68,7 +56,11 @@ function PokemonApp() {
         <div className="pokemon-container">
           {/* filtrelenmiş pokemonCardları gösterme */}
           {filteredPokemonList.map((pokemon, index) => (
-            <PokemonCard key={index} pokemonName={pokemon.name} />
+            <PokemonCard
+              key={index}
+              pokemonName={pokemon.name}
+              pokemonType={pokemon.types}
+            />
           ))}
         </div>
       </div>

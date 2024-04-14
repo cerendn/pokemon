@@ -48,6 +48,7 @@ input::placeholder {
   color: #ff1f1f;
   letter-spacing: 7px;
   text-align: center;
+  font-weight: 500;
 }
 .pokemon {
   display: flex;
@@ -72,6 +73,10 @@ input::placeholder {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   width: 230px;
   height: 250px;
+  transition-duration: 0.5s;
+}
+.pokemon-card:hover {
+  transform: translateY(-15px);
 }
 footer {
   display: flex;
