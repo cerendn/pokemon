@@ -56,11 +56,7 @@ function PokemonApp() {
         <div className="pokemon-container">
           {/* filtrelenmiş pokemonCardları gösterme */}
           {filteredPokemonList.map((pokemon, index) => (
-            <PokemonCard
-              key={index}
-              pokemonName={pokemon.name}
-              pokemonType={pokemon.types}
-            />
+            <PokemonCard key={index} pokemonName={pokemon.name} />
           ))}
         </div>
       </div>
