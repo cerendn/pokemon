@@ -21,8 +21,8 @@ function PokemonApp() {
         const response = await fetch(`${pokemonApi}pokemon?limit=201`);
         const data = await response.json();
         const promises = data.results.map(async (pokemon) => {
-          const pokemonResponse = await fetch(pokemon.url); // Değiştirildi
-          const pokemonData = await pokemonResponse.json(); // Değiştirildi
+          const pokemonResponse = await fetch(pokemon.url);
+          const pokemonData = await pokemonResponse.json();
           return {
             id: pokemonData.id,
             name: pokemonData.name,
@@ -32,7 +32,7 @@ function PokemonApp() {
         });
         const pokemonDetail = await Promise.all(promises);
         setPokemonList(pokemonDetail);
-        setFilteredPokemonList(pokemonDetail); // Değiştirildi
+        setFilteredPokemonList(pokemonDetail);
       } catch (error) {
         console.error("Veriler alınırken hata oluştu:", error);
       }
@@ -43,7 +43,7 @@ function PokemonApp() {
   // Input değişikliklerine göre filtreleme işlemini gerçekleştiren fonksiyon
   useEffect(() => {
     filterPokemon();
-  }, [searchPokemon, searchType, pokemonList]); // pokemonList bağımlılığı eklendi
+  }, [searchPokemon, searchType, pokemonList]);
 
   const filterPokemon = () => {
     let filtered = pokemonList.filter((pokemon) => {
