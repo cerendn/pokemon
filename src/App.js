@@ -7,10 +7,10 @@ import Footer from "./footer";
 function PokemonApp() {
   //pokemonList state
   const [pokemonList, setPokemonList] = useState([]);
-
   //search state
   const [searchPokemon, setSearchPokemon] = useState("");
   const [searchType, setSearchType] = useState("");
+  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
 
   //useEffect hook kullanarak API'den fetch ile veri çekme
   const pokemonApi = "https://pokeapi.co/api/v2/";
@@ -21,8 +21,8 @@ function PokemonApp() {
         const response = await fetch(`${pokemonApi}pokemon?limit=201`);
         const data = await response.json();
         const promises = data.results.map(async (pokemon) => {
-          const response = await fetch(pokemon.url);
-          const pokemonData = await response.json();
+          const pokemonResponse = await fetch(pokemon.url); // Değiştirildi
+          const pokemonData = await pokemonResponse.json(); // Değiştirildi
           return {
             id: pokemonData.id,
             name: pokemonData.name,
@@ -32,21 +32,34 @@ function PokemonApp() {
         });
         const pokemonDetail = await Promise.all(promises);
         setPokemonList(pokemonDetail);
-        setFilteredPokemonList(pokemonDetail);
+        setFilteredPokemonList(pokemonDetail); // Değiştirildi
       } catch (error) {
         console.error("Veriler alınırken hata oluştu:", error);
       }
     };
     fetchData();
   }, []);
+
   // Input değişikliklerine göre filtreleme işlemini gerçekleştiren fonksiyon
-  const filteredPokemonList = pokemonList.filter((pokemon) => {
-    // Pokemon adı araması
-    const nameMatch = pokemon.name
-      .toLowerCase()
-      .includes(searchPokemon.toLowerCase());
-    return nameMatch;
-  });
+  useEffect(() => {
+    filterPokemon();
+  }, [searchPokemon, searchType, pokemonList]); // pokemonList bağımlılığı eklendi
+
+  const filterPokemon = () => {
+    let filtered = pokemonList.filter((pokemon) => {
+      // Pokemon adı araması
+      const nameMatch = pokemon.name
+        .toLowerCase()
+        .includes(searchPokemon.toLowerCase());
+      // Pokemon tipi araması
+      const typeMatch = searchType
+        ? pokemon.types.includes(searchType.toLowerCase())
+        : true;
+      return nameMatch && typeMatch;
+    });
+
+    setFilteredPokemonList(filtered);
+  };
 
   return (
     <div className="container">

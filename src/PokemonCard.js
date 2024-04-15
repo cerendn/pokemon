@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from "react";
-//pokeomon adına göre API'den verileri alıp gösterme
+
 function PokemonCard({ pokemonName }) {
-  //verileri tutmak için state oluşturma
   const [pokemonData, setPokemonData] = useState(null);
 
-  //useEffect hook ile her render edildiginde yada prop değiştiğinde çalıştırma
-  useEffect(
-    () => {
-      //asyn func ile API'den fetch ile veri çekme
-      const fetchData = async () => {
-        try {
-          const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-          );
-          const data = await response.json();
-          setPokemonData(data);
-        } catch (error) {
-          console.error("Pokemon verisi alınırken hata oluştu:", error);
-        }
-      };
+  useEffect(() => {
+    const fetchPokemonData = async () => {
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+        );
+        const data = await response.json();
+        setPokemonData(data);
+      } catch (error) {
+        console.error("Error fetching Pokemon data:", error);
+      }
+    };
 
-      fetchData();
-    },
-    //sadece prop değişirse çalıştır
-    [pokemonName]
-  );
-  //pokemonData null ise kartı göstermez
-  if (!pokemonData) return null;
+    fetchPokemonData();
+  }, [pokemonName]);
+
+  if (!pokemonData) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    //PokemonCardı gösterme
     <div className="pokemon-card">
       <img
         src={pokemonData.sprites.other.showdown.front_default}
@@ -47,4 +41,5 @@ function PokemonCard({ pokemonName }) {
     </div>
   );
 }
+
 export default PokemonCard;
