@@ -13,14 +13,26 @@ function PokemonApp() {
   const [searchType, setSearchType] = useState("");
 
   //useEffect hook kullanarak API'den fetch ile veri çekme
+  const pokemonApi = "https://pokeapi.co/api/v2/";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=201"
-        );
+        const response = await fetch(`${pokemonApi}pokemon?limit=201`);
         const data = await response.json();
-        setPokemonList(data.results);
+        const promises = data.results.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          const pokemonData = await response.json();
+          return {
+            id: pokemonData.id,
+            name: pokemonData.name,
+            image: pokemonData.sprites.other["official-artwork"].front_default,
+            types: pokemonData.types.map((type) => type.type.name),
+          };
+        });
+        const pokemonDetail = await Promise.all(promises);
+        setPokemonList(pokemonDetail);
+        setFilteredPokemonList(pokemonDetail);
       } catch (error) {
         console.error("Veriler alınırken hata oluştu:", error);
       }
@@ -56,7 +68,11 @@ function PokemonApp() {
         <div className="pokemon-container">
           {/* filtrelenmiş pokemonCardları gösterme */}
           {filteredPokemonList.map((pokemon, index) => (
-            <PokemonCard key={index} pokemonName={pokemon.name} />
+            <PokemonCard
+              key={index}
+              pokemonName={pokemon.name}
+              pokemonType={pokemon.types}
+            />
           ))}
         </div>
       </div>
